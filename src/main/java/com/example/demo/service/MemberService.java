@@ -1,4 +1,4 @@
-package service;
+package com.example.demo.service;
 
 import com.example.demo.domain.Member;
 import com.example.demo.repository.MemoryMemberRepository;
@@ -10,16 +10,20 @@ import java.util.Optional;
 
 public class MemberService {
     // 메모리 회원 레퍼지토리 직접 생성
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    //private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
-    // 중복 이름 ㄴㄴ
     public Long join(Member member){
+        // 중복 이름 ㄴㄴ
         validateDuplicateMember(member);
         memberRepository.save(member);
         return member.getId();
     }
 
-    //파라미터로 들어온 객체가 메모리에 이미 존재하는지 검증
+    //파라미터로 들어온 객체가 메모리에 이미 존재하는지 검증, 중복처리 따로 메서드로 빼준거
     private void validateDuplicateMember(Member member) {
         // optional 안 값이 있으면(=널값이 아니면) 예외 처리
         memberRepository.findByName(member.getName())

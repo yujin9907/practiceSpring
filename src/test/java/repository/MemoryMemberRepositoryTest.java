@@ -16,7 +16,8 @@ public class MemoryMemberRepositoryTest {
     // 각 테스트가 끝날 때마다 실행
     @AfterEach
     public void afterEach(){
-        repository.clearStore(); // 메모리에 있는 모든 member 삭제함 (테스트 순서에 의존관계 없
+        repository.clearStore(); // 메모리에 있는 모든 member 삭제함 (테스트 순서에 의존관계 없애기 위해)
+    }
     // 메모리에 member 저장이 잘 되는지 검수 함수
     @Test
     public void save(){
