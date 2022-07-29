@@ -1,8 +1,11 @@
 package com.example.demo.repository;
 
 import com.example.demo.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
+
+// 이것도 스프링이 인식하기 위해서 어노테이션 리포지토리를 붙여줌
 
 public class MemoryMemberRepository implements MemberRepository{
     // 클래스가 인터페이스를 상속할 땐 임플리맨츠만 사용 가능

@@ -3,15 +3,26 @@ package com.example.demo.service;
 import com.example.demo.domain.Member;
 import com.example.demo.repository.MemoryMemberRepository;
 import com.example.demo.repository.MemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+// 이건 그냥 순수한 자바 파일이기 때문에
+// 스프링이 이년을 인식하기 위해서 어노테이션 서비스를 붙임
 
 public class MemberService {
     // 메모리 회원 레퍼지토리 직접 생성
     //private final MemberRepository memberRepository = new MemoryMemberRepository();
     private final MemberRepository memberRepository;
+
+    // 스프링이 서비스를 인식하고 등록할 때
+    // 오토와이어드로 자동으로 생성자를 등록하게 함
+    // 근데 멤버 레포지토리 필요하네?
+    // 바로 컨테이너에 메모리멤버를 주입을 해줌.
+    // 그럼 세갠가 네개가 다 연결됨
+
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
